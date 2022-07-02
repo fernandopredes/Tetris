@@ -73,7 +73,7 @@ function undraw() {
     if(e.keyCode === 37) {
       moveLeft()
     } else if (e.keyCode === 38) {
-      //rotate()
+      rotate()
     } else if (e.keyCode === 39) {
       moveRight()
     } else if (e.keyCode === 40) {
@@ -124,6 +124,18 @@ function moveRight() {
     currentPosition -=1
   }
   draw()
+}
+
+//rotacionando
+
+function rotate() {
+  undraw();
+  currentRotation ++
+  if(currentRotation === current.length) { //se chegar a posição 4 ele volta pra 0
+    currentRotation = 0
+  }
+  current = theTretrominoes[random][currentRotation];
+  draw();
 }
 
 
