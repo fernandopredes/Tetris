@@ -71,7 +71,21 @@ function undraw() {
     undraw();
     currentPosition += width ;
     draw();
+    freeze();
   }
+
+  // Freeze
+function freeze() {
+  if(current.some(index => squares[currentPosition + index + width].classList.contains('taken'))) {
+    current.forEach(index => squares[currentPosition + index + width].classList.add('taken'))
+    //Começar nova peça
+random = Math.floor(Math.random() * theTretrominoes.length);
+current = theTretrominoes[random][currentRotation];
+currentPosition = 4;
+draw();
+  }
+}
+
 
 
 });
