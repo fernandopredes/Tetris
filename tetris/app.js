@@ -67,12 +67,29 @@ function undraw() {
 //Fazer o tetromino descer cada segundo
 
   timerId = setInterval(moveDown, 1000)
+
+  //Movimento das teclas
+  function control(e) {
+    if(e.keyCode === 37) {
+      moveLeft()
+    } else if (e.keyCode === 38) {
+      //rotate()
+    } else if (e.keyCode === 39) {
+      moveRight()
+    } else if (e.keyCode === 40) {
+      moveDown()
+    }
+  }
+  document.addEventListener('keyup', control)
+
+  //descida dos blocos
   function moveDown() {
     undraw();
     currentPosition += width ;
     draw();
     freeze();
   }
+
 
   // Freeze
 function freeze() {
@@ -86,6 +103,28 @@ function freeze() {
   }
 }
 
+//Movendo a peça pra esquerda.
+
+function moveLeft() {
+  undraw()
+  const isAtLeftEdge = current.some(index => (currentPosition + index) % width === 0)
+  if(!isAtLeftEdge) currentPosition -=1
+  if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+    currentPosition +=1
+  }
+  draw()
+}
+
+//movendo pra direita
+function moveRight() {
+  undraw()
+  const isAtRightEdge = current.some(index => (currentPosition + index) % width === width -1)
+  if(!isAtRightEdge) currentPosition +=1
+  if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+    currentPosition -=1
+  }
+  draw()
+}
 
 
 });
