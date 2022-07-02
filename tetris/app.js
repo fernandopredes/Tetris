@@ -43,13 +43,24 @@ const iTetromino = [
 
 const theTretrominoes =[lTetrominoe, zTetromino, tTetromino, oTetromino, iTetromino ];
 let currentPosition = 4;
-let current = theTretrominoes[0][0];
+let currentRotation = 0;
 
-//Desenhar a primeira rotação no primeiro Tetromino.
+let random = Math.floor(Math.random()*theTretrominoes.length);
+let current = theTretrominoes[random][0];
+
+//Desenhar rotação .
 function draw() {
   current.forEach(index => {
-    squares[currentPosition + index].classList.add('tetromino')
+    squares[currentPosition + index].classList.add('tetromino');
   })
 }
-draw();
+
+//
+function undraw() {
+  current.forEach(index => {
+    squares[currentPosition + index].classList.remove('tetromino');
+  })
+}
+
+
 });
