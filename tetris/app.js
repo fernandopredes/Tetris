@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //Definindo os Tetrominoes e suas rotações
   const lTetrominoe =[  [1, width+1, width*2+1, 2],
                         [width, width+1, width+2, width*2+2],
-                        [1, width+1, width*2+1, width*2]
+                        [1, width+1, width*2+1, width*2],
                         [width,width*2,width*2+1,width*2+2]
                       ];
 
@@ -41,5 +41,15 @@ const iTetromino = [
                           [width,width+1,width+2,width+3]
                       ];
 
-const theTrtrominoes =[lTetrominoe, zTetromino, tTetromino, oTetromino, iTetromino ];
+const theTretrominoes =[lTetrominoe, zTetromino, tTetromino, oTetromino, iTetromino ];
+let currentPosition = 4;
+let current = theTretrominoes[0][0];
+
+//Desenhar a primeira rotação no primeiro Tetromino.
+function draw() {
+  current.forEach(index => {
+    squares[currentPosition + index].classList.add('tetromino')
+  })
+}
+draw();
 });
